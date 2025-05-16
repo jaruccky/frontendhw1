@@ -151,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Timed popup functionality
   const timedPopup = document.getElementById('timed-popup');
   const closeTimedPopup = document.getElementById('close-timed-popup');
-  const popupCtaButton = document.querySelector('.popup-cta-button');
 
   // Check if popup has been shown in this session
   const popupShown = sessionStorage.getItem('popupShown');
@@ -347,7 +346,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // SVG Animation - Circles that move away from cursor
   const svgContainer = document.getElementById('svg-container');
-  const interactiveSvg = document.getElementById('interactive-svg');
   const circle1 = document.getElementById('circle1');
   const circle2 = document.getElementById('circle2');
   const circle3 = document.getElementById('circle3');
