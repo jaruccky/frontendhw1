@@ -356,4 +356,112 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   })
+
+  // SVG Animation functionality
+  const svgContainer = document.getElementById('svg-container')
+  const interactiveSvg = document.getElementById('interactive-svg')
+  const circle1 = document.getElementById('circle1')
+  const circle2 = document.getElementById('circle2')
+  const circle3 = document.getElementById('circle3')
+  const wavePath = document.getElementById('wave')
+  
+  // Initial positions
+  const initialPositions = {
+    circle1: { cx: 200, cy: 200, r: 50 },
+    circle2: { cx: 400, cy: 200, r: 70 },
+    circle3: { cx: 600, cy: 200, r: 40 }
+  }
+  
+  // Mouse movement effect
+  svgContainer.addEventListener('mousemove', (e) => {
+    // Get mouse position relative to the container
+    const rect = svgContainer.getBoundingClientRect()
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    
+    // Calculate normalized position (0 to 1)
+    const normalizedX = mouseX / rect.width
+    const normalizedY = mouseY / rect.height
+    
+    // Move circles based on mouse position
+    circle1.setAttribute('cx', initialPositions.circle1.cx + (normalizedX - 0.5) * 100)
+    circle1.setAttribute('cy', initialPositions.circle1.cy + (normalizedY - 0.5) * 100)
+    
+    circle2.setAttribute('cx', initialPositions.circle2.cx - (normalizedX - 0.5) * 50)
+    circle2.setAttribute('cy', initialPositions.circle2.cy - (normalizedY - 0.5) * 50)
+    
+    circle3.setAttribute('cx', initialPositions.circle3.cx + (normalizedX - 0.5) * 80)
+    circle3.setAttribute('cy', initialPositions.circle3.cy + (normalizedY - 0.5) * 80)
+    
+    // Update wave path
+    const wavePathD = `M0,200 Q${200 + (normalizedX - 0.5) * 100},${100 + (normalizedY - 0.5) * 100} ${400},200 Q${600 - (normalizedX - 0.5) * 100},${300 - (normalizedY - 0.5) * 100} 800,200`
+    wavePath.setAttribute('d', wavePathD)
+    
+    // Update gradient colors based on mouse position
+    const gradient = document.querySelector('#gradient')
+    const stopColor1 = `hsl(${normalizedX * 120}, 100%, 50%)`
+    const stopColor2 = `hsl(${normalizedY * 240 + 120}, 100%, 50%)`
+    
+    gradient.querySelector('stop:first-child').setAttribute('stop-color', stopColor1)
+    gradient.querySelector('stop:last-child').setAttribute('stop-color', stopColor2)
+  })
+  
+  // Scroll effect
+  window.addEventListener('scroll', () => {
+    // Get the SVG section position
+    const svgSection = document.getElementById('svg-animation')
+    const rect = svgSection.getBoundingClientRect()
+    
+    // Check if the SVG section is visible
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      // Calculate how far the section is scrolled into view (0 to 1)
+      const scrollProgress = 1 - (rect.top / window.innerHeight)
+      
+      // Apply scroll-based animations
+      if (scrollProgress >= 0 && scrollProgress <= 1) {
+        // Scale circles based on scroll position
+        circle1.setAttribute('r', initialPositions.circle1.r * (1 + scrollProgress * 0.3))
+        circle2.setAttribute('r', initialPositions.circle2.r * (1 + scrollProgress * 0.2))
+        circle3.setAttribute('r', initialPositions.circle3.r * (1 + scrollProgress * 0.4))
+        
+        // Rotate the entire SVG based on scroll
+        interactiveSvg.style.transform = `rotate(${scrollProgress * 5}deg)`
+        
+        // Change stroke width of the wave
+        wavePath.setAttribute('stroke-width', 5 + scrollProgress * 5)
+      }
+    }
+  })
+  
+  // Reset positions when mouse leaves
+  svgContainer.addEventListener('mouseleave', () => {
+    // Reset circles to initial positions with animation
+    circle1.style.transition = 'cx 0.5s, cy 0.5s, r 0.5s'
+    circle2.style.transition = 'cx 0.5s, cy 0.5s, r 0.5s'
+    circle3.style.transition = 'cx 0.5s, cy 0.5s, r 0.5s'
+    wavePath.style.transition = 'd 0.5s, stroke-width 0.5s'
+    
+    circle1.setAttribute('cx', initialPositions.circle1.cx)
+    circle1.setAttribute('cy', initialPositions.circle1.cy)
+    
+    circle2.setAttribute('cx', initialPositions.circle2.cx)
+    circle2.setAttribute('cy', initialPositions.circle2.cy)
+    
+    circle3.setAttribute('cx', initialPositions.circle3.cx)
+    circle3.setAttribute('cy', initialPositions.circle3.cy)
+    
+    // Reset wave path
+    wavePath.setAttribute('d', 'M0,200 Q200,100 400,200 Q600,300 800,200')
+    
+    // Remove transitions after reset
+    setTimeout(() => {
+      circle1.style.transition = ''
+      circle2.style.transition = ''
+      circle3.style.transition = ''
+      wavePath.style.transition = ''
+    }, 500)
+  })
+  
+  // Trigger initial scroll effect
+  window.dispatchEvent(new Event('scroll'))
 })

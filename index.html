@@ -15,7 +15,7 @@
       <div class="nav-links" id="nav-links">
         <a href="#home">Home</a>
         <a href="#gallery">Gallery</a>
-        <a href="#testimonials">Testimonials</a>
+        <a href="#svg-animation">SVG Animation</a>
         <a href="#recent-work">Recent work</a>
         <a href="#" id="contact-btn">Contact Us</a>
       </div>
@@ -191,55 +191,26 @@
     </div>
   </div>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials" id="testimonials">
+  <!-- SVG Animation Section (Replacing Testimonials) -->
+  <section class="svg-animation" id="svg-animation">
     <div class="container">
-      <div class="testimonials-header">
-        <h2>Testimonials</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.</p>
+      <div class="svg-animation-header">
+        <h2>Interactive SVG Animation</h2>
       </div>
-
-      <div class="testimonials-grid">
-        <!-- Testimonial 1 -->
-        <div class="testimonial-card">
-          <div class="quote-icon">"</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.</p>
-          <div class="client-info">
-            <img src="https://dummyimage.com/600x400/000/fff" alt="Client Avatar" class="client-avatar">
-            <span class="client-name">Client Name</span>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="quote-icon">"</div>
-          <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <div class="client-info">
-            <img src="https://dummyimage.com/600x400/000/fff" alt="Client Avatar" class="client-avatar">
-            <span class="client-name">Client Name</span>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="quote-icon">"</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.</p>
-          <div class="client-info">
-            <img src="https://dummyimage.com/600x400/000/fff" alt="Client Avatar" class="client-avatar">
-            <span class="client-name">Client Name</span>
-          </div>
-        </div>
-
-        <!-- Testimonial 4 -->
-        <div class="testimonial-card">
-          <div class="quote-icon">"</div>
-          <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <div class="client-info">
-            <img src="https://dummyimage.com/600x400/000/fff" alt="Client Avatar" class="client-avatar">
-            <span class="client-name">Client Name</span>
-          </div>
-        </div>
+      <div class="svg-container" id="svg-container">
+        <svg id="interactive-svg" viewBox="0 0 800 400">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#5cb800" />
+              <stop offset="100%" stop-color="#4169E1" />
+            </linearGradient>
+          </defs>
+          <circle id="circle1" cx="200" cy="200" r="50" fill="url(#gradient)" />
+          <circle id="circle2" cx="400" cy="200" r="70" fill="url(#gradient)" />
+          <circle id="circle3" cx="600" cy="200" r="40" fill="url(#gradient)" />
+          <path id="wave" d="M0,200 Q200,100 400,200 Q600,300 800,200" stroke="url(#gradient)" stroke-width="5"
+            fill="none" />
+        </svg>
       </div>
     </div>
   </section>
