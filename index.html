@@ -26,7 +26,7 @@
   <section class="hero" id="home">
     <div class="container">
       <div class="hero-content">
-        <h1>Your Name Here</h1>
+        <h1>Frontend Hw. No. 2</h1>
         <p>Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
           labore et dolore magna aliqua.</p>
         <a href="#" class="cta-button" id="hero-contact-btn">Let's get started</a>
@@ -196,20 +196,13 @@
     <div class="container">
       <div class="svg-animation-header">
         <h2>Interactive SVG Animation</h2>
+        <p>Move your cursor around to see the circles react to your movement.</p>
       </div>
       <div class="svg-container" id="svg-container">
-        <svg id="interactive-svg" viewBox="0 0 800 400">
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#5cb800" />
-              <stop offset="100%" stop-color="#4169E1" />
-            </linearGradient>
-          </defs>
-          <circle id="circle1" cx="200" cy="200" r="50" fill="url(#gradient)" />
-          <circle id="circle2" cx="400" cy="200" r="70" fill="url(#gradient)" />
-          <circle id="circle3" cx="600" cy="200" r="40" fill="url(#gradient)" />
-          <path id="wave" d="M0,200 Q200,100 400,200 Q600,300 800,200" stroke="url(#gradient)" stroke-width="5"
-            fill="none" />
+        <svg width="100%" height="400" id="interactive-svg">
+          <circle id="circle1" cx="200" cy="200" r="40" fill="#5cb800" />
+          <circle id="circle2" cx="300" cy="200" r="30" fill="#ff6b6b" />
+          <circle id="circle3" cx="400" cy="200" r="50" fill="#4a90e2" />
         </svg>
       </div>
     </div>
